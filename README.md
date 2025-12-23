@@ -17,10 +17,7 @@ A full-stack task management application built with FastAPI and React, featuring
 - 👤 **User Profiles** - Manage user information and preferences
 - 🎨 **Modern UI** - Responsive React interface with Redux state management
 - 🔄 **Real-time Updates** - Seamless synchronization between frontend and backend
-- 📱 **Mobile Responsive** - Works perfectly on all device sizes
 - 🧪 **Tested** - Comprehensive test coverage with Pytest
-- 🚀 **Production Ready** - Dockerized and deployment-ready
-
 ---
 
 ## 🧱 Tech Stack
@@ -279,6 +276,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **⭐ Star this repo if you find it helpful! ⭐**
 
-Made with ❤️ by [Your Name](https://github.com/yourusername)
+Made with ❤️ by Khushi
 
 </div>
