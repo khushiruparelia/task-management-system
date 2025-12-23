@@ -39,7 +39,7 @@ pip install -r requirements.txt
 
 Create a .env file in backend/:
 
-DATABASE_URL=postgresql://postgres:password@localhost:5432/mydb
+DATABASE_URL= (Present in the env file of the fastapi)
 SECRET_KEY=your-secret-key
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
