@@ -9,25 +9,6 @@ A full-stack task management application built with FastAPI and React, featuring
 
 ---
 
-## 📑 Table of Contents
-
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Architecture](#-architecture)
-- [Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Backend Setup](#-backend-setup-fastapi)
-  - [Frontend Setup](#-frontend-setup-react)
-- [Authentication](#-authentication-flow)
-- [API Documentation](#-api-documentation)
-- [Testing](#-testing)
-- [Database](#-database-management)
-- [Deployment](#-deployment)
-- [Project Structure](#-project-structure)
-- [Contributing](#-contributing)
-- [License](#-license)
-
----
 
 ## ✨ Features
 
