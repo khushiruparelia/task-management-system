@@ -11,6 +11,7 @@ function Tasks({ onLogout, onNavigateToProfile }) {
   const [isAdding, setIsAdding] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [newTaskDescription, setNewTaskDescription] = useState('');
+  const [newTaskStatus, setNewTaskStatus] = useState('pending');
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -53,8 +54,8 @@ function Tasks({ onLogout, onNavigateToProfile }) {
         body: JSON.stringify({
           title: newTaskTitle,
           description: newTaskDescription,
+          status: newTaskStatus,
           priority: 1,
-          complete: false,
         }),
       });
       if (response.ok) {
@@ -93,8 +94,8 @@ function Tasks({ onLogout, onNavigateToProfile }) {
         body: JSON.stringify({
           title: updatedTask.title,
           description: updatedTask.description,
+          status: updatedTask.status || 'pending',
           priority: task.priority || 1,
-          complete: task.complete,
         }),
       });
       if (response.ok) {
@@ -135,12 +136,12 @@ function Tasks({ onLogout, onNavigateToProfile }) {
         body: JSON.stringify({
           title: task.title,
           description: task.description,
+          status: task.status === 'pending' ? 'completed' : 'pending',
           priority: task.priority || 1,
-          complete: !task.complete,
         }),
       });
       if (response.ok) {
-        setTasks(tasks.map(t => t.id === id ? { ...t, complete: !t.complete } : t));
+        setTasks(tasks.map(t => t.id === id ? { ...t, status: t.status === 'pending' ? 'completed' : 'pending' } : t));
       }
     } catch (error) {
       console.error('Error toggling task:', error);
@@ -184,6 +185,16 @@ function Tasks({ onLogout, onNavigateToProfile }) {
                     rows={3}
                   />
                 </div>
+                <div className='form-group'>
+                  <select
+                    className='form-select'
+                    value={newTaskStatus}
+                    onChange={(e) => setNewTaskStatus(e.target.value)}
+                  >
+                    <option value='pending'>Pending</option>
+                    <option value='completed'>Completed</option>
+                  </select>
+                </div>
                 <div className='form-actions'>
                   <button type='submit' className='btn btn-primary'>Add Task</button>
                   <button
@@ -193,6 +204,7 @@ function Tasks({ onLogout, onNavigateToProfile }) {
                       setIsAdding(false);
                       setNewTaskTitle('');
                       setNewTaskDescription('');
+                      setNewTaskStatus('pending');
                     }}
                   >
                     Cancel

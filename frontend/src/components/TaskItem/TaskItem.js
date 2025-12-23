@@ -5,12 +5,14 @@ function TaskItem({ task, onUpdate, onDelete, onToggleComplete }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(task.title);
   const [editDescription, setEditDescription] = useState(task.description);
+  const [editStatus, setEditStatus] = useState(task.status || 'pending');
 
   const handleUpdate = () => {
     if (editTitle.trim()) {
       onUpdate(task.id, {
         title: editTitle,
-        description: editDescription
+        description: editDescription,
+        status: editStatus
       });
       setIsEditing(false);
     }
@@ -19,6 +21,7 @@ function TaskItem({ task, onUpdate, onDelete, onToggleComplete }) {
   const handleCancel = () => {
     setEditTitle(task.title);
     setEditDescription(task.description);
+    setEditStatus(task.status || 'pending');
     setIsEditing(false);
   };
 
@@ -50,6 +53,16 @@ function TaskItem({ task, onUpdate, onDelete, onToggleComplete }) {
             rows={3}
           />
         </div>
+        <div className='form-group'>
+          <select
+            className='form-select'
+            value={editStatus}
+            onChange={(e) => setEditStatus(e.target.value)}
+          >
+            <option value='pending'>Pending</option>
+            <option value='completed'>Completed</option>
+          </select>
+        </div>
         <div className='task-actions'>
           <button
             className='btn-small btn-save'
@@ -69,11 +82,11 @@ function TaskItem({ task, onUpdate, onDelete, onToggleComplete }) {
   }
 
   return (
-    <div className={`task-item ${task.completed ? 'completed' : ''}`}>
+    <div className={`task-item ${task.status === 'completed' ? 'completed' : ''}`}>
       <div className='task-checkbox'>
         <input
           type='checkbox'
-          checked={task.completed}
+          checked={task.status === 'completed'}
           onChange={() => onToggleComplete(task.id)}
           className='checkbox-input'
         />
